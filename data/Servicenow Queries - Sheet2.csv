@@ -1,0 +1,480 @@
+Number,User Query,ServiceNow Glide Record Query
+1,Tell me the number of computer records in our cmdb?,sys_class_name=cmdb_ci_computer
+2,How many incidents are currently open?,state=1^ORstate=2^ORstate=3^ORstate=4
+3,"Find all users with the role ""admin"".",user_name LIKE '%admin%'^ORroles LIKE '%admin%'
+4,Show me all active problems related to network connectivity.,state=1^category=network
+5,Can you update the description field for the incident with ID INC01234?,number=INC01234
+6,"Retrieve all approved change requests impacting the ""database server"" configuration item.",state=1^cmdb_ci = 'database server'
+7,"What are the open change requests assigned to the group ""Network Operations""?",state=1^assignment_group=Network Operations
+8,Tell me the number of computer records in our CMDB?,sys_class_name=cmdb_ci_computer
+9,Tell me the number of computer records in our cmdb?,sys_class_name=cmdb_ci_computer
+10,Find all active users from the HR department.,"user_active=TRUE^department=""HR"""
+11,List all open change requests related to network issues.,"change_request.state=1^short_description LIKE ""%network%"""
+12,What incidents are currently assigned to John Smith?,incident.assigned_to=John Smith^active=TRUE
+13,Show me all problem records that haven't been updated in the last month.,problem.sys_updated_on<2024-06-08^active=TRUE
+14,How many servers are currently down?,cmdb_ci_server.state=down
+15,"List all catalog items belonging to the ""Software"" category.",sc_catalog_item.category=Software
+16,Find all change requests awaiting approval.,change_request.state=2^approval=NULL
+17,What are the open tickets assigned to my group?,incident.assigned_to_group=MYGROUP^active=TRUE
+18,Show me all hardware assets due for maintenance within the next week.,cmdb_ci_hardware.due_date>=2024-06-15^due_date<=2024-06-22
+19,List all users with administrator roles.,"user.active=TRUE^roles.name=""admin"""
+20,Find all incidents with a high priority.,incident.priority=high
+21,What are the most recently submitted catalog requests?,sc_request.sys_created_onDESC
+22,Show me all open problems with no assigned owner.,problem.active=TRUE^assigned_to=NULL
+23,"Identify all configuration items associated with a specific location (e.g., New York office).",cmdb_ci.location=New York office
+24,List all change requests that have been modified in the last day.,change_request.sys_updated_on>=2024-06-07^active=TRUE
+25,Find all incidents exceeding their resolution time SLA.,"incident.active=TRUE^work_notes LIKE ""%SLA exceeded%"""
+26,What are all open incidents?,active=true
+27,List all users in the system.,sys_class_name=sys_user
+28,Show all change requests that are approved.,type=change_request^state=approved
+29,Find all VIP users.,vip=true
+30,How many computers are in our CMDB?,sys_class_name=cmdb_ci_computer
+31,Show me all incidents assigned to me.,assigned_to=javascript:gs.getUserID()
+32,List all network devices in the CMDB.,sys_class_name=cmdb_ci_network
+33,Show all tasks in the incident state.,state=incident
+34,Display all active problems.,active=true^state=problem
+35,List all Windows servers.,os=Windows^sys_class_name=cmdb_ci_server
+36,Show all software installations.,sys_class_name=cmdb_ci_spkg
+37,Display all user accounts created in the last 30 days.,sys_created_on>=javascript:gs.daysAgoStart(30)
+38,List all incidents with priority 1.,priority=1
+39,Show all requests pending approval.,type=request^state=pending_approval
+40,List all databases in the CMDB.,sys_class_name=cmdb_ci_database
+41,Display all active SLAs.,active=true^sys_class_name=contract_sla
+42,Show all closed change requests.,type=change_request^state=closed
+43,List all incidents related to email issues.,short_descriptionLIKEemail
+44,Show all active servers in the data center.,location=data_center^sys_class_name=cmdb_ci_server^active=true
+45,Find all open tasks assigned to the IT department.,department=IT^active=true
+46,Tell me the number of computer records in our cmdb?,sys_class_name=cmdb_ci_computer
+47,How many active incidents are there?,active=true^sys_class_name=incident
+48,Show me all open change requests.,state!=closed^sys_class_name=change_request
+49,List all users in the IT department.,department=IT^sys_class_name=sys_user
+50,Give me the details of the last 10 closed incidents.,state=closed^ORDERBYDESCclosed_at^sys_class_name=incident^LIMIT10
+51,What are the top 5 critical problems?,priority=1^ORDERBYDESCimpact^sys_class_name=problem^LIMIT5
+52,Display all assets assigned to John Doe.,assigned_to=John Doe^sys_class_name=alm_asset
+53,How many servers are currently in maintenance?,sys_class_name=cmdb_ci_server^maintenance=true
+54,Find all incidents assigned to the network team.,assigned_group=network^sys_class_name=incident
+55,Show all records created in the last 24 hours.,"sys_created_on>=javascript
+.beginningOfLast24Hours()^sys_class_name=incident"
+56,List all open tasks.,state!=closed^sys_class_name=task
+57,Get the count of resolved incidents this month.,"state=resolved^resolved_atONToday@month@javascript
+.monthStart()@javascript
+.now()^sys_class_name=incident"
+58,Which change requests are pending approval?,approval=requested^sys_class_name=change_request
+59,Find all incidents with priority 1.,priority=1^sys_class_name=incident
+60,Show me all computers running Windows 10.,os=Windows 10^sys_class_name=cmdb_ci_computer
+61,How many hardware assets are there?,sys_class_name=alm_hardware
+62,List all VIP users.,vip=true^sys_class_name=sys_user
+63,Display all tasks assigned to me.,"assigned_to=javascript
+.getUserID()^sys_class_name=task"
+64,How many incidents have been reopened?,reopened_count>0^sys_class_name=incident
+65,Show all network devices in the data center.,location=Data Center^sys_class_name=cmdb_ci_network
+66,Find all open incidents reported by Alice.,caller_id=Alice^state=open^sys_class_name=incident
+67,How many requests are in the backlog?,state=backlog^sys_class_name=sc_request
+68,Show all change requests implemented last week.,"sys_class_name=change_request^implemented_atONLast week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()"
+69,List all active service catalog items.,active=true^sys_class_name=sc_cat_item
+70,Get the count of open problems.,state=open^sys_class_name=problem
+71,Which incidents are awaiting user info?,state=awaiting_info^sys_class_name=incident
+72,Display all incidents closed yesterday.,"closed_atONToday@day@javascript
+.beginningOfYesterday()@javascript
+.endOfYesterday()^sys_class_name=incident"
+73,List all records modified in the last hour.,"sys_updated_on>=javascript
+.beginningOfLastHour()^sys_class_name=task"
+74,Show all VIP incidents.,vip=true^sys_class_name=incident
+75,Find all tasks with a due date this week.,"due_dateONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=task"
+76,How many P1 problems are open?,priority=1^state=open^sys_class_name=problem
+77,Show all computers with less than 8GB RAM.,ram<8192^sys_class_name=cmdb_ci_computer
+78,List all inactive users.,active=false^sys_class_name=sys_user
+79,How many incidents have been escalated?,escalation=true^sys_class_name=incident
+80,Show all open tasks assigned to the HR team.,state=open^assigned_group=HR^sys_class_name=task
+81,Find all records related to the project ABC.,sys_project=project_abc^sys_class_name=task
+82,List all critical incidents.,priority=1^state=open^sys_class_name=incident
+83,Show all software installed on servers.,sys_class_name=cmdb_ci_software^install_status=installed^sys_class_name=cmdb_ci_server
+84,How many records were created by John Smith?,sys_created_by=John Smith^sys_class_name=task
+85,Show all incidents resolved by the network team.,resolved_by=network^sys_class_name=incident
+86,List all open incidents older than a month.,"state=open^sys_created_on<=javascript
+.beginningOfLastMonth()^sys_class_name=incident"
+87,Find all VIP tasks assigned to me.,"vip=true^assigned_to=javascript
+.getUserID()^sys_class_name=task"
+88,Display all requests submitted last month.,"sys_created_onONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=sc_request"
+89,Show me all incidents with priority 2 or 3.,"priorityIN2,3^sys_class_name=incident"
+90,List all tasks with a due date today.,"due_dateONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=task"
+91,How many change requests are in progress?,state=in progress^sys_class_name=change_request
+92,Show all active network devices.,active=true^sys_class_name=cmdb_ci_network
+93,Find all incidents resolved within SLA.,resolved_at<=sla_due^sys_class_name=incident
+94,List all incidents with 'High' priority.,priority=high^sys_class_name=incident
+95,How many incidents are created today?,"sys_created_onONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=incident"
+96,Show me all open problems assigned to IT team.,state!=closed^assigned_group=IT^sys_class_name=problem
+97,List all changes requested by John Doe.,requested_by=John Doe^sys_class_name=change_request
+98,Find all tasks due this month.,"due_dateONToday@month@javascript
+.beginningOfThisMonth()@javascript
+.endOfThisMonth()^sys_class_name=task"
+99,How many incidents have priority 2?,priority=2^sys_class_name=incident
+100,Show all network issues.,category=network^sys_class_name=incident
+101,Display all open requests for service.,state=open^sys_class_name=sc_request
+102,List all change requests closed last month.,"state=closed^closed_atONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=change_request"
+103,How many incidents were resolved last week?,"state=resolved^resolved_atONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=incident"
+104,Show all incidents in the last 7 days.,"sys_created_on>=javascript
+.daysAgoStart(7)^sys_class_name=incident"
+105,List all critical service requests.,priority=1^sys_class_name=sc_request
+106,Display all tasks in progress.,state=in progress^sys_class_name=task
+107,How many high-priority change requests are there?,priority=high^sys_class_name=change_request
+108,Show me all closed tasks.,state=closed^sys_class_name=task
+109,List all incidents reported by Mary Smith.,caller_id=Mary Smith^sys_class_name=incident
+110,Find all assets with a status of 'In Use'.,install_status=in use^sys_class_name=alm_hardware
+111,How many incidents were created yesterday?,"sys_created_onONToday@day@javascript
+.beginningOfYesterday()@javascript
+.endOfYesterday()^sys_class_name=incident"
+112,Show all open incidents in the HR department.,department=HR^state!=closed^sys_class_name=incident
+113,List all servers in the data center.,location=Data Center^sys_class_name=cmdb_ci_server
+114,Display all network changes implemented this year.,"category=network^implemented_atONToday@year@javascript
+.beginningOfThisYear()@javascript
+.endOfThisYear()^sys_class_name=change_request"
+115,How many new users were added this month?,"sys_created_onONToday@month@javascript
+.beginningOfThisMonth()@javascript
+.endOfThisMonth()^sys_class_name=sys_user"
+116,Show me all critical incidents assigned to me.,"priority=1^assigned_to=javascript
+.getUserID()^sys_class_name=incident"
+117,List all hardware assets with warranty expiring soon.,"warranty_expiration<javascript
+.daysAgoStart(30)^sys_class_name=alm_hardware"
+118,Find all tasks with a state of 'On Hold'.,state=on hold^sys_class_name=task
+119,How many change requests were rejected last week?,"state=rejected^rejected_atONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=change_request"
+120,Show all incidents related to software issues.,category=software^sys_class_name=incident
+121,List all open incidents for VIP users.,caller.vip=true^state=open^sys_class_name=incident
+122,Display all change requests pending implementation.,state=pending^sys_class_name=change_request
+123,How many incidents are currently in progress?,state=in progress^sys_class_name=incident
+124,Show all incidents with a priority of 3.,priority=3^sys_class_name=incident
+125,List all open service catalog requests.,state=open^sys_class_name=sc_request
+126,Find all tasks with high urgency.,urgency=high^sys_class_name=task
+127,How many incidents were created in the last 48 hours?,"sys_created_on>=javascript
+.daysAgoStart(2)^sys_class_name=incident"
+128,Show all incidents with 'Network' in the short description.,short_descriptionLIKENetwork^sys_class_name=incident
+129,List all change requests assigned to the security team.,assigned_group=security^sys_class_name=change_request
+130,Display all open incidents with category 'Hardware'.,category=hardware^state=open^sys_class_name=incident
+131,How many incidents are in the 'Pending' state?,state=pending^sys_class_name=incident
+132,Show all tasks with a priority of 'Critical'.,priority=critical^sys_class_name=task
+133,List all requests for the 'ITIL' role.,role=itil^sys_class_name=sys_user_has_role
+134,Find all incidents closed within the last week.,"state=closed^closed_atONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=incident"
+135,How many incidents are assigned to the 'Service Desk' group?,assigned_group=service desk^sys_class_name=incident
+136,Show all incidents with an urgency of 'Medium'.,urgency=medium^sys_class_name=incident
+137,List all incidents resolved by John Doe.,resolved_by=John Doe^sys_class_name=incident
+138,Display all changes requested last month.,"sys_created_onONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=change_request"
+139,How many VIP incidents are currently open?,vip=true^state=open^sys_class_name=incident
+140,Show all tasks with a due date next week.,"due_dateONToday@week@javascript
+.beginningOfNextWeek()@javascript
+.endOfNextWeek()^sys_class_name=task"
+141,List all software assets with 'Microsoft' in the name.,nameLIKEMicrosoft^sys_class_name=cmdb_ci_spkg
+142,Find all incidents in the 'On Hold' state.,state=on hold^sys_class_name=incident
+143,How many change requests are awaiting approval?,approval=requested^sys_class_name=change_request
+144,Show all incidents created by the 'Automation' user.,opened_by=automation^sys_class_name=incident
+145,List all incidents with 'Email' in the short description.,short_descriptionLIKEEmail^sys_class_name=incident
+146,Display all tasks assigned to the 'Database' team.,assigned_group=database^sys_class_name=task
+147,How many incidents are assigned to the 'Help Desk' group?,assigned_group=help desk^sys_class_name=incident
+148,Show all incidents created in the last 30 days.,"sys_created_on>=javascript
+.daysAgoStart(30)^sys_class_name=incident"
+149,List all change requests implemented in the last month.,"state=implemented^implemented_atONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=change_request"
+150,Display all tasks due in the next 7 days.,"due_dateONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=task"
+151,How many incidents have a priority of 'High'?,priority=high^sys_class_name=incident
+152,Show all VIP change requests.,vip=true^sys_class_name=change_request
+153,List all tasks created by 'System Administrator'.,sys_created_by=system administrator^sys_class_name=task
+154,Find all incidents assigned to the 'Network Operations' team.,assigned_group=network operations^sys_class_name=incident
+155,How many incidents are awaiting customer response?,state=awaiting customer^sys_class_name=incident
+156,Show all open incidents assigned to the 'Infrastructure' team.,state=open^assigned_group=infrastructure^sys_class_name=incident
+157,List all tasks with a due date in the past week.,"due_dateONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=task"
+158,Display all VIP requests.,vip=true^sys_class_name=sc_request
+159,How many incidents were resolved today?,"state=resolved^resolved_atONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=incident"
+160,Show all tasks assigned to 'Mary Johnson'.,assigned_to=Mary Johnson^sys_class_name=task
+161,List all open incidents with a priority of 'Low'.,state=open^priority=low^sys_class_name=incident
+162,Find all change requests related to 'Upgrade'.,short_descriptionLIKEUpgrade^sys_class_name=change_request
+163,How many incidents are assigned to the 'Application Support' team?,assigned_group=application support^sys_class_name=incident
+164,Show all tasks due next month.,"due_dateONToday@month@javascript
+.beginningOfNextMonth()@javascript
+.endOfNextMonth()^sys_class_name=task"
+165,List all requests for 'Service Catalog' items.,category=service catalog^sys_class_name=sc_request
+166,Display all incidents resolved by 'Automation'.,resolved_by=automation^sys_class_name=incident
+167,How many change requests were approved last month?,"state=approved^approved_atONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=change_request"
+168,Show all open incidents with 'Password Reset' in the description.,short_descriptionLIKEPassword Reset^state=open^sys_class_name=incident
+169,List all tasks due in the next 30 days.,"due_dateONToday@month@javascript
+.beginningOfThisMonth()@javascript
+.endOfThisMonth()^sys_class_name=task"
+170,Find all VIP change requests pending approval.,vip=true^approval=requested^sys_class_name=change_request
+171,How many incidents are assigned to 'Jane Doe'?,assigned_to=Jane Doe^sys_class_name=incident
+172,Show all incidents created in the last hour.,"sys_created_on>=javascript
+.beginningOfLastHour()^sys_class_name=incident"
+173,List all change requests with a priority of 'Medium'.,priority=medium^sys_class_name=change_request
+174,Display all tasks assigned to the 'Software Development' team.,assigned_group=software development^sys_class_name=task
+175,How many incidents were closed today?,"state=closed^closed_atONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=incident"
+176,Show all VIP incidents assigned to 'John Doe'.,vip=true^assigned_to=John Doe^sys_class_name=incident
+177,List all open tasks created by 'Jane Smith'.,state=open^sys_created_by=Jane Smith^sys_class_name=task
+178,Find all change requests implemented in the last 7 days.,"state=implemented^implemented_atONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=change_request"
+179,How many incidents are currently assigned to 'Network Operations'?,state!=closed^assigned_group=network operations^sys_class_name=incident
+180,Show all incidents created by 'System User'.,sys_created_by=system user^sys_class_name=incident
+181,List all open incidents with 'Outage' in the description.,state=open^short_descriptionLIKEOutage^sys_class_name=incident
+182,Display all tasks due in the next 24 hours.,"due_dateONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=task"
+183,How many change requests were rejected today?,"state=rejected^rejected_atONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=change_request"
+184,Show all VIP incidents created in the last week.,"vip=true^sys_created_on>=javascript
+.beginningOfLastWeek()^sys_class_name=incident"
+185,List all open tasks assigned to the 'Support' team.,state=open^assigned_group=support^sys_class_name=task
+186,Find all incidents related to 'Hardware'.,category=hardware^sys_class_name=incident
+187,How many change requests are pending approval?,state=pending^sys_class_name=change_request
+188,Show all incidents with an urgency of 'Low'.,urgency=low^sys_class_name=incident
+189,List all open tasks with 'Critical' priority.,state=open^priority=critical^sys_class_name=task
+190,Display all incidents resolved in the last 48 hours.,"state=resolved^resolved_at>=javascript
+.daysAgoStart(2)^sys_class_name=incident"
+191,How many VIP incidents were closed yesterday?,"vip=true^state=closed^closed_atONToday@day@javascript
+.beginningOfYesterday()@javascript
+.endOfYesterday()^sys_class_name=incident"
+192,How many open incidents are there?,state=open^sys_class_name=incident
+193,Show all incidents resolved by Mary Smith.,resolved_by=Mary Smith^sys_class_name=incident
+194,List all change requests approved this month.,"state=approved^approved_atONToday@month@javascript
+.beginningOfThisMonth()@javascript
+.endOfThisMonth()^sys_class_name=change_request"
+195,Display all tasks with a due date tomorrow.,"due_dateONToday@day@javascript
+.beginningOfTomorrow()@javascript
+.endOfTomorrow()^sys_class_name=task"
+196,How many incidents are assigned to the IT team?,assigned_group=IT^sys_class_name=incident
+197,Show all change requests created by John Doe.,sys_created_by=John Doe^sys_class_name=change_request
+198,List all incidents with priority 4.,priority=4^sys_class_name=incident
+199,Find all open tasks related to project ABC.,state=open^sys_project=project_abc^sys_class_name=task
+200,How many incidents have been closed this week?,"state=closed^closed_atONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=incident"
+201,Show all incidents in the 'New' state.,state=new^sys_class_name=incident
+202,List all tasks assigned to the 'Network Operations' team.,assigned_group=network operations^sys_class_name=task
+203,Display all VIP tasks with a due date next week.,"vip=true^due_dateONToday@week@javascript
+.beginningOfNextWeek()@javascript
+.endOfNextWeek()^sys_class_name=task"
+204,How many incidents are high priority?,priority=1^sys_class_name=incident
+205,Show all incidents with a 'Low' impact.,impact=low^sys_class_name=incident
+206,List all open change requests assigned to 'John Smith'.,state=open^assigned_to=John Smith^sys_class_name=change_request
+207,Find all tasks in the 'Closed' state.,state=closed^sys_class_name=task
+208,How many incidents are in the 'Awaiting Evidence' state?,state=awaiting evidence^sys_class_name=incident
+209,Show all open incidents assigned to the 'Application Support' team.,state=open^assigned_group=application support^sys_class_name=incident
+210,List all change requests created in the last 7 days.,"sys_created_on>=javascript
+.daysAgoStart(7)^sys_class_name=change_request"
+211,Display all VIP incidents created in the last month.,"vip=true^sys_created_onONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=incident"
+212,How many open incidents are assigned to 'Jane Doe'?,state=open^assigned_to=Jane Doe^sys_class_name=incident
+213,Show all tasks with 'Upgrade' in the description.,short_descriptionLIKEUpgrade^sys_class_name=task
+214,List all incidents created in the last 30 days.,"sys_created_on>=javascript
+.daysAgoStart(30)^sys_class_name=incident"
+215,Find all change requests with a state of 'Cancelled'.,state=cancelled^sys_class_name=change_request
+216,How many incidents are assigned to the 'Service Desk' group?,assigned_group=service desk^sys_class_name=incident
+217,Show all VIP tasks with 'Password Reset' in the description.,vip=true^short_descriptionLIKEPassword Reset^sys_class_name=task
+218,List all incidents with a priority of 5.,priority=5^sys_class_name=incident
+219,Display all change requests implemented in the last 48 hours.,"state=implemented^implemented_at>=javascript
+.daysAgoStart(2)^sys_class_name=change_request"
+220,How many incidents are in the 'In Progress' state?,state=in progress^sys_class_name=incident
+221,Show all open tasks assigned to 'Mary Johnson'.,state=open^assigned_to=Mary Johnson^sys_class_name=task
+222,List all change requests with a priority of 'Critical'.,priority=critical^sys_class_name=change_request
+223,Find all incidents resolved by 'Automation'.,resolved_by=automation^sys_class_name=incident
+224,How many VIP change requests are currently open?,vip=true^state=open^sys_class_name=change_request
+225,Show all tasks due next month.,"due_dateONToday@month@javascript
+.beginningOfNextMonth()@javascript
+.endOfNextMonth()^sys_class_name=task"
+226,List all incidents created by 'System Administrator'.,sys_created_by=system administrator^sys_class_name=incident
+227,Display all change requests pending implementation.,state=pending^sys_class_name=change_request
+228,How many incidents are in the 'Resolved' state?,state=resolved^sys_class_name=incident
+229,Show all open incidents with a priority of 'Medium'.,state=open^priority=medium^sys_class_name=incident
+230,List all tasks with a 'High' impact.,impact=high^sys_class_name=task
+231,Find all incidents created in the last hour.,"sys_created_on>=javascript
+.beginningOfLastHour()^sys_class_name=incident"
+232,How many change requests were approved last week?,"state=approved^approved_atONToday@week@javascript
+.beginningOfLastWeek()@javascript
+.endOfLastWeek()^sys_class_name=change_request"
+233,Show all VIP incidents created by 'John Doe'.,vip=true^sys_created_by=John Doe^sys_class_name=incident
+234,List all tasks assigned to 'Network Support'.,assigned_group=network support^sys_class_name=task
+235,Display all open change requests with a priority of 'High'.,state=open^priority=high^sys_class_name=change_request
+236,How many incidents have a priority of 2?,priority=2^sys_class_name=incident
+237,Show all open tasks related to 'Project XYZ'.,state=open^sys_project=project_xyz^sys_class_name=task
+238,List all change requests created by 'Mary Smith'.,sys_created_by=Mary Smith^sys_class_name=change_request
+239,Find all incidents with a state of 'New'.,state=new^sys_class_name=incident
+240,How many tasks are in the 'Pending' state?,state=pending^sys_class_name=task
+241,Show all VIP incidents assigned to the 'IT Support' team.,vip=true^assigned_group=it support^sys_class_name=incident
+242,List all change requests approved in the last 7 days.,"state=approved^approved_at>=javascript
+.daysAgoStart(7)^sys_class_name=change_request"
+243,Display all open tasks assigned to 'John Smith'.,state=open^assigned_to=John Smith^sys_class_name=task
+244,How many incidents are assigned to 'Network Operations'?,assigned_group=network operations^sys_class_name=incident
+245,Show all incidents with a priority of 'Low'.,priority=low^sys_class_name=incident
+246,List all tasks with a 'Critical' priority.,priority=critical^sys_class_name=task
+247,Find all incidents resolved in the last 48 hours.,"state=resolved^resolved_at>=javascript
+.daysAgoStart(2)^sys_class_name=incident"
+248,How many change requests are pending approval?,state=pending^approval=requested^sys_class_name=change_request
+249,Show all VIP tasks with a due date today.,"vip=true^due_dateONToday@day@javascript
+.beginningOfToday()@javascript
+.endOfToday()^sys_class_name=task"
+250,List all incidents created by 'Automation'.,sys_created_by=automation^sys_class_name=incident
+251,Display all open change requests with 'Upgrade' in the description.,state=open^short_descriptionLIKEUpgrade^sys_class_name=change_request
+252,How many incidents are in the 'Awaiting Customer' state?,state=awaiting customer^sys_class_name=incident
+253,Show all VIP change requests implemented in the last month.,"vip=true^state=implemented^implemented_atONToday@month@javascript
+.beginningOfLastMonth()@javascript
+.endOfLastMonth()^sys_class_name=change_request"
+254,List all tasks due in the next week.,"due_dateONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=task"
+255,Find all incidents created in the last 24 hours.,"sys_created_on>=javascript
+.beginningOfLast24Hours()^sys_class_name=incident"
+256,How many change requests are in the 'Approved' state?,state=approved^sys_class_name=change_request
+257,Show all VIP incidents with 'Password Reset' in the description.,vip=true^short_descriptionLIKEPassword Reset^sys_class_name=incident
+258,List all open tasks with a due date next month.,"state=open^due_dateONToday@month@javascript
+.beginningOfNextMonth()@javascript
+.endOfNextMonth()^sys_class_name=task"
+259,Display all incidents assigned to 'Mary Johnson'.,assigned_to=Mary Johnson^sys_class_name=incident
+260,How many tasks have a priority of 1?,priority=1^sys_class_name=task
+261,Show all open change requests related to 'Project ABC'.,state=open^sys_project=project_abc^sys_class_name=change_request
+262,List all incidents with a priority of 'Medium'.,priority=medium^sys_class_name=incident
+263,Find all tasks created by 'John Smith'.,sys_created_by=John Smith^sys_class_name=task
+264,How many incidents are assigned to 'Service Desk'?,assigned_group=service desk^sys_class_name=incident
+265,Show all open tasks with 'Network' in the description.,state=open^short_descriptionLIKENetwork^sys_class_name=task
+266,List all change requests with a 'High' impact.,impact=high^sys_class_name=change_request
+267,Display all incidents resolved in the last 30 days.,"state=resolved^resolved_at>=javascript
+.daysAgoStart(30)^sys_class_name=incident"
+268,How many tasks are in the 'On Hold' state?,state=on hold^sys_class_name=task
+269,Show all VIP incidents created in the last 7 days.,"vip=true^sys_created_on>=javascript
+.daysAgoStart(7)^sys_class_name=incident"
+270,List all open change requests with a priority of 2.,state=open^priority=2^sys_class_name=change_request
+271,Find all tasks with a due date this week.,"due_dateONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=task"
+272,How many incidents have a 'High' impact?,impact=high^sys_class_name=incident
+273,Show all VIP tasks assigned to 'Jane Doe'.,vip=true^assigned_to=Jane Doe^sys_class_name=task
+274,List all incidents created by 'John Smith'.,sys_created_by=John Smith^sys_class_name=incident
+275,Display all change requests approved this week.,"state=approved^approved_atONToday@week@javascript
+.beginningOfThisWeek()@javascript
+.endOfThisWeek()^sys_class_name=change_request"
+276,How many incidents are in the 'Awaiting User Info' state?,state=awaiting user info^sys_class_name=incident
+277,Show all VIP change requests created by 'System Administrator'.,vip=true^sys_created_by=system administrator^sys_class_name=change_request
+278,List all open tasks assigned to 'Network Support'.,state=open^assigned_group=network support^sys_class_name=task
+279,Find all incidents with a priority of 3.,priority=3^sys_class_name=incident
+280,How many change requests were created in the last 48 hours?,"sys_created_on>=javascript
+.daysAgoStart(2)^sys_class_name=change_request"
+281,Show all VIP incidents with a state of 'Pending'.,vip=true^state=pending^sys_class_name=incident
+282,List all open tasks with 'Upgrade' in the description.,state=open^short_descriptionLIKEUpgrade^sys_class_name=task
+283,Display all incidents assigned to 'System User'.,assigned_to=system user^sys_class_name=incident
+284,How many servers are there in the CMDB?,sys_class_name=cmdb_ci_server
+285,List all Windows computers.,os=Windows^sys_class_name=cmdb_ci_computer
+286,Show all Linux servers.,os=Linux^sys_class_name=cmdb_ci_server
+287,Find all virtual instances.,sys_class_name=cmdb_ci_vm_instance
+288,How many business services are there?,sys_class_name=cmdb_ci_service
+289,Display all application services.,sys_class_name=cmdb_ci_service_discovered
+290,List all network devices.,sys_class_name=cmdb_ci_network
+291,Show all storage devices.,sys_class_name=cmdb_ci_storage
+292,Find all database instances.,sys_class_name=cmdb_ci_db_instance
+293,How many workstations are in the CMDB?,sys_class_name=cmdb_ci_computer^subclass=Workstation
+294,Display all printers.,sys_class_name=cmdb_ci_printer
+295,List all mobile devices.,sys_class_name=cmdb_ci_endpoint^subclass=Mobile
+296,Show all Unix servers.,os=Unix^sys_class_name=cmdb_ci_server
+297,Find all cloud resources.,sys_class_name=cmdb_ci_cloud_resource
+298,How many desktops are in the CMDB?,sys_class_name=cmdb_ci_computer^subclass=Desktop
+299,List all network switches.,sys_class_name=cmdb_ci_network^device_type=switch
+300,Show all routers.,sys_class_name=cmdb_ci_network^device_type=router
+301,Find all firewalls.,sys_class_name=cmdb_ci_network^device_type=firewall
+302,How many laptops are in the CMDB?,sys_class_name=cmdb_ci_computer^subclass=Laptop
+303,Display all software packages.,sys_class_name=cmdb_ci_spkg
+304,List all business applications.,sys_class_name=cmdb_ci_appl
+305,Show all Unix instances.,os=Unix^sys_class_name=cmdb_ci_os_instance
+306,Find all SAP systems.,sys_class_name=cmdb_ci_appl^nameLIKESAP
+307,How many email servers are there?,sys_class_name=cmdb_ci_email_server
+308,List all web servers.,sys_class_name=cmdb_ci_web_server
+309,Show all middleware systems.,sys_class_name=cmdb_ci_middleware
+310,Find all mainframes.,sys_class_name=cmdb_ci_mainframe
+311,How many Linux workstations are there?,os=Linux^sys_class_name=cmdb_ci_computer^subclass=Workstation
+312,Display all backup devices.,sys_class_name=cmdb_ci_backup
+313,List all enterprise applications.,sys_class_name=cmdb_ci_enterprise_app
+314,Show all SAN devices.,sys_class_name=cmdb_ci_storage^storage_type=SAN
+315,Find all load balancers.,sys_class_name=cmdb_ci_lb
+316,How many physical servers are in the data center?,location=Data Center^sys_class_name=cmdb_ci_server
+317,List all cloud databases.,sys_class_name=cmdb_ci_db_instance^discovery_source=cloud
+318,Show all Windows virtual machines.,os=Windows^sys_class_name=cmdb_ci_vm_instance
+319,Find all Linux virtual machines.,os=Linux^sys_class_name=cmdb_ci_vm_instance
+320,How many Windows servers are there?,os=Windows^sys_class_name=cmdb_ci_server
+321,Display all ESX hosts.,sys_class_name=cmdb_ci_esx_server
+322,List all Linux desktops.,os=Linux^sys_class_name=cmdb_ci_computer^subclass=Desktop
+323,Show all Hyper-V instances.,sys_class_name=cmdb_ci_hyper_v_instance
+324,Find all Windows application servers.,os=Windows^sys_class_name=cmdb_ci_appl_server
+325,How many Linux application servers are there?,os=Linux^sys_class_name=cmdb_ci_appl_server
+326,List all virtual storage instances.,sys_class_name=cmdb_ci_storage^storage_type=virtual
+327,Show all network firewalls.,sys_class_name=cmdb_ci_network^device_type=firewall
+328,Find all physical workstations.,sys_class_name=cmdb_ci_computer^virtual=false^subclass=Workstation
+329,How many Linux database servers are there?,os=Linux^sys_class_name=cmdb_ci_db_server
+330,Display all Windows database servers.,os=Windows^sys_class_name=cmdb_ci_db_server
+331,List all network appliances.,sys_class_name=cmdb_ci_network_appliance
+332,Show all Windows storage devices.,os=Windows^sys_class_name=cmdb_ci_storage
+333,Find all Linux storage devices.,os=Linux^sys_class_name=cmdb_ci_storage
+334,How many VMware instances are there?,sys_class_name=cmdb_ci_vmware_instance
+335,List all Kubernetes clusters.,sys_class_name=cmdb_ci_kubernetes
+336,Show all Docker containers.,sys_class_name=cmdb_ci_docker_container
+337,Find all virtual desktops.,sys_class_name=cmdb_ci_virtual_desktop
+338,How many Unix database instances are there?,os=Unix^sys_class_name=cmdb_ci_db_instance
+339,Display all Linux web servers.,os=Linux^sys_class_name=cmdb_ci_web_server
+340,List all Windows web servers.,os=Windows^sys_class_name=cmdb_ci_web_server
+341,Show all Unix storage devices.,os=Unix^sys_class_name=cmdb_ci_storage
+342,Find all Windows middleware servers.,os=Windows^sys_class_name=cmdb_ci_middleware
+343,How many Linux middleware servers are there?,os=Linux^sys_class_name=cmdb_ci_middleware
+344,List all Unix servers in the data center.,os=Unix^location=Data Center^sys_class_name=cmdb_ci_server
+345,Show all physical desktops.,sys_class_name=cmdb_ci_computer^virtual=false^subclass=Desktop
+346,Find all application clusters.,sys_class_name=cmdb_ci_app_cluster
+347,How many Linux network devices are there?,os=Linux^sys_class_name=cmdb_ci_network
+348,Display all Windows network devices.,os=Windows^sys_class_name=cmdb_ci_network
+349,List all Unix network devices.,os=Unix^sys_class_name=cmdb_ci_network
+350,Show all Windows backup devices.,os=Windows^sys_class_name=cmdb_ci_backup
+351,Find all Linux backup devices.,os=Linux^sys_class_name=cmdb_ci_backup
+352,How many Unix backup devices are there?,os=Unix^sys_class_name=cmdb_ci_backup
+353,Display all network interfaces.,sys_class_name=cmdb_ci_network_interface
+354,List all Windows printers.,os=Windows^sys_class_name=cmdb_ci_printer
+355,Show all Linux printers.,os=Linux^sys_class_name=cmdb_ci_printer
+356,Find all Unix printers.,os=Unix^sys_class_name=cmdb_ci_printer
+357,How many Windows laptops are in the CMDB?,os=Windows^sys_class_name=cmdb_ci_computer^subclass=Laptop
+358,Display all Unix laptops.,os=Unix^sys_class_name=cmdb_ci_computer^subclass=Laptop
+359,List all Unix application servers.,os=Unix^sys_class_name=cmdb_ci_appl_server
+360,Show all Windows application servers.,os=Windows^sys_class_name=cmdb_ci_appl_server
+361,Find all Unix database servers.,os=Unix^sys_class_name=cmdb_ci_db_server
+362,How many Unix virtual machines are there?,os=Unix^sys_class_name=cmdb_ci_vm_instance
+363,Display all cloud application services.,sys_class_name=cmdb_ci_service_discovered^discovery_source=cloud
+364,List all Unix cloud resources.,os=Unix^sys_class_name=cmdb_ci_cloud_resource
+365,Show all Linux cloud resources.,os=Linux^sys_class_name=cmdb_ci_cloud_resource
+366,Find all Windows cloud resources.,os=Windows^sys_class_name=cmdb_ci_cloud_resource
+367,How many Linux SAN devices are there?,os=Linux^sys_class_name=cmdb_ci_storage^storage_type=SAN
+368,Display all Unix SAN devices.,os=Unix^sys_class_name=cmdb_ci_storage^storage_type=SAN
+369,List all Windows SAN devices.,os=Windows^sys_class_name=cmdb_ci_storage^storage_type=SAN
+370,Show all Unix workstations.,os=Unix^sys_class_name=cmdb_ci_computer^subclass=Workstation
+371,Find all Windows enterprise applications.,os=Windows^sys_class_name=cmdb_ci_enterprise_app
+372,How many Linux enterprise applications are there?,os=Linux^sys_class_name=cmdb_ci_enterprise_app

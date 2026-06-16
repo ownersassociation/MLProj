@@ -1,0 +1,4 @@
+﻿File,Purpose
+[load\_dataset.py](sandbox:///mnt/agents/output/load_dataset.py),Merges chunks + converts to Unsloth format (`conversations` or `alpaca`)
+[train\_unsloth.py](sandbox:///mnt/agents/output/train_unsloth.py),"Complete Unsloth fine-tuning script (4-bit QLoRA, ChatML template)"
+[dataset\_manifest.json](sandbox:///mnt/agents/output/dataset_manifest.json),"Metadata, field list, and source references"
